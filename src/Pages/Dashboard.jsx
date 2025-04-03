@@ -1,12 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; 
 import "./Dashboard.css"; 
 
 const Dashboard = () => {
+  const navigate = useNavigate(); 
+
   return (
     <div className="dashboard-container">
       <header className="header">
         <h1>Employee Management System</h1>
-        <button className="add-button">+ Add new</button> {/*Lisää työntekijä button*/}
+        <button 
+          className="add-button" 
+          onClick={() => navigate("/add-employee")} 
+        >
+          + Add new
+        </button>
       </header>
       <table className="employee-table">
         <thead>
@@ -19,7 +27,6 @@ const Dashboard = () => {
           </tr>
         </thead>
         <tbody>
-          {/* Testaus, miten työntekijät näkyy listalla */}
           <tr>
             <td>Employee 1</td>
             <td>IT department</td>
