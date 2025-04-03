@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../firebase/Config"
 
@@ -43,6 +43,10 @@ function Login() {
             > 
             Sign In
             </button>
+
+            <p>
+                <Link to="/UpdatePassword">Forgot Password?</Link>
+            </p>
             </>
       );
     }
