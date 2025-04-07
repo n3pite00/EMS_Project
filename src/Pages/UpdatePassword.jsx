@@ -16,7 +16,7 @@ function UpdatePassword() {
         try {
             await sendPasswordResetEmail(auth, email)
             alert("Password reset link has been sent to your email!")
-            navigate("/Login")
+            navigate("/")
 
         } catch(err) {
             alert("Error in resetting password.")
