@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { getAuth, sendPasswordResetEmail } from "firebase/auth"
+import { sendPasswordResetEmail } from "firebase/auth"
 import { auth } from "../firebase/Config"
 
 function UpdatePassword() {
