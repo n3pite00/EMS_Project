@@ -1,7 +1,9 @@
+import React from "react";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { sendPasswordResetEmail } from "firebase/auth"
 import { auth } from "../firebase/Config"
+import "../styles/Login.css"
 
 function UpdatePassword() {
     const [email, setEmail] = useState('')
@@ -24,22 +26,23 @@ function UpdatePassword() {
     }
       
         return (
-            <>
-            <h1>Reset password</h1>
+            <div className="Login-page">
+                <div className="Login-form">
+                    <h1>Reset <br/> Password</h1>
+                    <input
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                        placeholder="Enter your email"
+                        type="email"
+                    />
 
-            <input
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                placeholder="Enter your email"
-                type="email"
-            />
-
-            <button
-                onClick={ChangePassword}
-            > 
-            Send reset email
-            </button>
-            </>
+                    <button
+                        onClick={ChangePassword}
+                    > 
+                    Send reset email
+                    </button>
+                </div>
+            </div>
       );   
 }
 export default UpdatePassword;

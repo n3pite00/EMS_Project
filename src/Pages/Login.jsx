@@ -1,7 +1,9 @@
+import React from "react";
 import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../firebase/Config"
+import "../styles/Login.css"
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -22,32 +24,34 @@ function Login() {
         
       
         return (
-            <>
-            <h1>Sign In!</h1>
-            <input
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                placeholder="Email"
-                type="email"
-            />
+            <div className="Login-page">
+                <div className="Login-form">
+                    <h1>Log In!</h1>
+                    <input
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                        placeholder="Email"
+                        type="email"
+                    />
 
-            <input
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-                placeholder="Password"
-                type="password"
-            />
+                    <input
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
+                        placeholder="Password"
+                        type="password"
+                    />
 
-            <button
-                onClick={signIn}
-            > 
-            Sign In
-            </button>
+                    <button
+                        onClick={signIn}
+                    > 
+                    Sign In
+                    </button>
 
-            <p>
-                <Link to="/UpdatePassword">Forgot Password?</Link>
-            </p>
-            </>
+                    <p>
+                        <Link to="/UpdatePassword">Forgot Password?</Link>
+                    </p>
+                </div>
+            </div>
       );
     }
 

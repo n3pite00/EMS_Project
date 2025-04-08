@@ -1,0 +1,45 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: blue;
+}
+
+.Login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vw;
+    width: 100vw;
+    background-color: white;
+}
+
+.Login-form h1 {
+    text-align: center;
+}
+
+.Login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width: 350px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px #888888;
+}
+
+.Login-form input {
+    margin-bottom: 20px;
+    padding: 8px;
+    width: 250px;
+}
+
+.Login-form button {
+    cursor: pointer;
+    color: white;
+    background-color: blue;
+    
+}
