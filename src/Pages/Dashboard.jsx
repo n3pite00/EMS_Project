@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/Config";
 import "./Dashboard.css";
+import Header from "../components/header"
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
+      <Header />
       <header className="header">
         <h1>Employee Management System</h1>
         <button
