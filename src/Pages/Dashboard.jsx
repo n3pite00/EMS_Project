@@ -1,17 +1,33 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"; 
-import "./Dashboard.css"; 
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase/Config";
+import "./Dashboard.css";
 
 const Dashboard = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const [employees, setEmployees] = useState([]);
+
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      const querySnapshot = await getDocs(collection(db, "Employee"));
+      const employeeList = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setEmployees(employeeList);
+    };
+
+    fetchEmployees();
+  }, []);
 
   return (
     <div className="dashboard-container">
       <header className="header">
         <h1>Employee Management System</h1>
-        <button 
-          className="add-button" 
-          onClick={() => navigate("/add-employee")} 
+        <button
+          className="add-button"
+          onClick={() => navigate("/add-employee")}
         >
           + Add new
         </button>
@@ -27,20 +43,15 @@ const Dashboard = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Employee 1</td>
-            <td>IT department</td>
-            <td>1500 €</td>
-            <td><button className="edit-button">Edit</button></td>
-            <td><button className="delete-button">Delete</button></td>
-          </tr>
-          <tr>
-            <td>Employee 2</td>
-            <td>Marketing</td>
-            <td>1750 €</td>
-            <td><button className="edit-button">Edit</button></td>
-            <td><button className="delete-button">Delete</button></td>
-          </tr>
+          {employees.map((emp) => (
+            <tr key={emp.id}>
+              <td>{emp.firstName} {emp.lastName}</td>
+              <td>{emp.department}</td>
+              <td>{emp.salary} €</td>
+              <td><button className="edit-button">Edit</button></td>
+              <td><button className="delete-button">Delete</button></td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
