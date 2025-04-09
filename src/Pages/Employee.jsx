@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/Config";
-import "./Dashboard.css";
+import "../styles/Employee.css";
 
 const Dashboard = () => {
   const navigate = useNavigate();

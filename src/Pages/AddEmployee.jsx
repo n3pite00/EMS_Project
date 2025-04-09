@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../firebase/Config"; 
 import { collection, addDoc } from "firebase/firestore";
+import "../styles/AddEmployee.css";
 
 const AddEmployee = () => {
   const navigate = useNavigate();
@@ -58,10 +59,6 @@ const AddEmployee = () => {
           value={salary}
           onChange={(e) => setSalary(e.target.value)}
           required
-        />
-        <input
-          type="file"
-          onChange={(e) => setImage(e.target.files[0])}
         />
         <button type="submit" className="finish-button">Finish</button>
       </form>

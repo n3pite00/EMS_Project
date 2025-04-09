@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.dashboard-container {
+  background-color: white;
+  width: 100vw; 
+  min-height: 100vh; 
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ff7f50;
+  padding: 20px 30px;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.add-button {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.add-button:hover {
+  background-color: darkgreen;
+}
+
+.employee-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+.employee-table th,
+.employee-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  color: black;
+}
+
+.employee-table th {
+  background-color: #f7f7f7;
+}
+
+.edit-button {
+  background-color: rgb(192, 141, 0);
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
