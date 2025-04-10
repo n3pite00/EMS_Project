@@ -4,6 +4,7 @@ import Login from "./Pages/Login";
 import Dashboard from "./Pages/Dashboard";
 import AddEmployee from "./Pages/AddEmployee"; 
 import UpdatePassword from "./Pages/UpdatePassword";
+import TimeTracker from "./Pages/WorkCalendar";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/UpdatePassword" element={<UpdatePassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/add-employee" element={<AddEmployee />} /> 
+        <Route path="/WorkCalendar" element={<TimeTracker />} /> 
       </Routes>
     </BrowserRouter>
   );
