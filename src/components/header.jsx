@@ -7,7 +7,7 @@ function Header() {
             <h2>Tervetuloa Teppo!</h2>
                 <ul>
                     <li><a href="/dashboard">Koti</a></li>
-                    <li><a href="/">Työajankirjaus</a></li>
+                    <li><a href="/WorkCalendar">Työajankirjaus</a></li>
                     <li><a href="/">Työntekijät</a></li>
                     <li><a href="/">Asetukset</a></li>
                 </ul>
