@@ -10,7 +10,6 @@ const AddEmployee = () => {
   const [lastName, setLastName] = useState("");
   const [department, setDepartment] = useState("");
   const [salary, setSalary] = useState("");
-  const [image, setImage] = useState(null); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();

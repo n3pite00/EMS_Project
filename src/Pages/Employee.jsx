@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/Config";
 import "../styles/Employee.css";
-import "./Dashboard.css";
 import Header from "../components/header"
 
-const Dashboard = () => {
+const Employee = () => {
   const navigate = useNavigate();
   const [employees, setEmployees] = useState([]);
 
@@ -24,10 +23,10 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="dashboard-container">
+    <div className="employee-container">
       <Header />
       <header className="header">
-        <h1>Employee Management System</h1>
+        <h1>Employee Management</h1>
         <button
           className="add-button"
           onClick={() => navigate("/add-employee")}
@@ -61,4 +60,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Employee;
