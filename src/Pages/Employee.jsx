@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/Config";
 import "../styles/Employee.css";
-import Header from "../components/header"
+import Header from "../components/header";
 
 const Employee = () => {
   const navigate = useNavigate();
@@ -50,7 +50,14 @@ const Employee = () => {
               <td>{emp.firstName} {emp.lastName}</td>
               <td>{emp.department}</td>
               <td>{emp.salary} €</td>
-              <td><button className="edit-button">Edit</button></td>
+              <td>
+                <button
+                  className="edit-button"
+                  onClick={() => navigate(`/add-employee/${emp.id}`)}
+                >
+                  Edit
+                </button>
+              </td>
               <td><button className="delete-button">Delete</button></td>
             </tr>
           ))}
