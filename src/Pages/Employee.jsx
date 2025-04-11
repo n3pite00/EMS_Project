@@ -1,26 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase/Config";
 import "../styles/Employee.css";
 import Header from "../components/header";
+import DeleteEmployee from "../components/DeleteEmployee";
 
 const Employee = () => {
   const navigate = useNavigate();
   const [employees, setEmployees] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
+
+  const fetchEmployees = async () => {
+    const querySnapshot = await getDocs(collection(db, "Employee"));
+    const employeeList = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    setEmployees(employeeList);
+  };
 
   useEffect(() => {
-    const fetchEmployees = async () => {
-      const querySnapshot = await getDocs(collection(db, "Employee"));
-      const employeeList = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setEmployees(employeeList);
-    };
-
     fetchEmployees();
   }, []);
+
+  const handleDeleteClick = (id) => {
+    setSelectedEmployeeId(id);
+    setShowModal(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (selectedEmployeeId) {
+      await deleteDoc(doc(db, "Employee", selectedEmployeeId));
+      setShowModal(false);
+      setSelectedEmployeeId(null);
+      fetchEmployees(); 
+    }
+  };
 
   return (
     <div className="employee-container">
@@ -58,11 +75,25 @@ const Employee = () => {
                   Edit
                 </button>
               </td>
-              <td><button className="delete-button">Delete</button></td>
+              <td>
+                <button
+                  className="delete-button"
+                  onClick={() => handleDeleteClick(emp.id)}
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {showModal && (
+        <DeleteEmployee
+          onClose={() => setShowModal(false)}
+          onConfirm={handleDeleteConfirm}
+        />
+      )}
     </div>
   );
 };
