@@ -1,20 +1,44 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import FullCalendar from '@fullcalendar/react'
+import { query, collection, onSnapshot } from "firebase/firestore";
+import { db, SHIFTS_REF } from '../firebase/Config';
 import timeGridPlugin from '@fullcalendar/timegrid'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import { useNavigate } from "react-router-dom"
 import "../styles/Calendar.css"
 
-const events = [
-  { title: 'Meeting', start: '2025-04-10T08:30:00', end: '2025-04-10T10:00:00' }
-]
-
 export function CalendarApp() {
   const navigate = useNavigate()
+  const [events, setEvents] = useState([])
 
   const handleAddShift = () => {
     navigate('/AddShift')
   }
+
+  const ShiftCollection = query(collection(db, SHIFTS_REF)) 
+
+  useEffect(() => {
+    const getEventsList = async() => {
+      try {
+        onSnapshot(ShiftCollection, querySnapshot => {
+          const ShiftList = querySnapshot.docs.map(doc => {
+            const data = doc.data()
+            return {
+              title: data.title,
+              start: data.start.toDate(),
+              end: data.end.toDate(),
+            }
+          });
+          setEvents(ShiftList)
+        })
+      } catch (err) {
+        alert("error")
+    }
+  }
+
+  
+  getEventsList()
+  }, []);
 
 
   return (
