@@ -1,6 +1,8 @@
+import React from 'react'
 import FullCalendar from '@fullcalendar/react'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import dayGridPlugin from '@fullcalendar/daygrid'
+import { useNavigate } from "react-router-dom"
 import "../styles/Calendar.css"
 
 const events = [
@@ -8,10 +10,17 @@ const events = [
 ]
 
 export function CalendarApp() {
+  const navigate = useNavigate()
+
+  const handleAddShift = () => {
+    navigate('/AddShift')
+  }
+
+
   return (
     <div className="CalendarView">
         <h1>Työajankirjaus</h1>
-        <button>Lisää tapahtuma</button>
+        <button onClick={handleAddShift}>Lisää tapahtuma</button>
         
         <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin]}

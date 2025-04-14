@@ -6,6 +6,8 @@ import AddEmployee from "./Pages/AddEmployee";
 import UpdatePassword from "./Pages/UpdatePassword";
 import TimeTracker from "./Pages/WorkCalendar";
 import Dashboard from "./Pages/Dashboard";
+import SiteSettings from "./Pages/Settings"
+import AddNewShift from "./Pages/AddShift";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/add-employee" element={<AddEmployee />} />
         <Route path="/add-employee/:id" element={<AddEmployee />} />
         <Route path="/WorkCalendar" element={<TimeTracker />} />
+        <Route path="/Settings" element={<SiteSettings />} />
+        <Route path="/AddShift" element={<AddNewShift />} />
       </Routes>
     </BrowserRouter>
   );
