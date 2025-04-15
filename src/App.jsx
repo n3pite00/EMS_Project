@@ -8,6 +8,7 @@ import TimeTracker from "./Pages/WorkCalendar";
 import Dashboard from "./Pages/Dashboard";
 import SiteSettings from "./Pages/Settings"
 import AddNewShift from "./Pages/AddShift";
+import LeaveRequests from "./Pages/LeaveRequests";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/WorkCalendar" element={<TimeTracker />} />
         <Route path="/Settings" element={<SiteSettings />} />
         <Route path="/AddShift" element={<AddNewShift />} />
+        <Route path="/leave-requests" element={<LeaveRequests />} />
       </Routes>
     </BrowserRouter>
   );

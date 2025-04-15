@@ -10,6 +10,7 @@ function Header() {
                 <li><Link to="/dashboard">Koti</Link></li>
                 <li><Link to="/WorkCalendar">Työajankirjaus</Link></li>
                 <li><Link to="/employees">Työntekijät</Link></li>
+                <li><Link to="/leave-requests">Lomapyyntö</Link></li>
                 <li><Link to="/Settings">Asetukset</Link></li>
             </ul>
             <button>Sign out</button>

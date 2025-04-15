@@ -1,0 +1,39 @@
+.leave-requests-container {
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .leave-form input,
+  .leave-form select,
+  .leave-form textarea {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .leave-form button {
+    padding: 10px 20px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .leave-table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+  }
+  
+  .leave-table th, .leave-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .leave-table button {
+    margin-right: 5px;
+  }
+  
