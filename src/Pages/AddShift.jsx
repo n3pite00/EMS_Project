@@ -4,9 +4,7 @@ import { db, SHIFTS_REF } from '../firebase/Config';
 import { useNavigate } from "react-router-dom"
 import "../styles/Login.css"
 
-
 export function AddNewShift() {
-  
   const [title, setTitle] = useState('')
   const [assignedTo, setAssignedTo] = useState('')
   const [start, setStart] = useState('')
@@ -15,65 +13,54 @@ export function AddNewShift() {
 
   const ShiftCollection = collection(db, SHIFTS_REF)
 
-  const save = async() => {
+  const save = async () => {
     try {
-      await addDoc(ShiftCollection, 
-        {title:  title, 
+      await addDoc(ShiftCollection, {
+        title: title,
         assignedTo: assignedTo,
         start: new Date(start),
-        end: new Date(end)})
+        end: new Date(end)
+      })
 
-      alert("Shift saved")
-
+      alert("Vuoro tallennettu")
       navigate("/WorkCalendar")
-
     } catch (err) {
-
-      alert(err)
+      alert("Virhe vuoron tallennuksessa.")
     }
   }
 
   return (
     <div className="Login-page">
       <div className="Login-form">
-        <h1>Add new Shift</h1>
-
+        <h1>Lisää uusi vuoro</h1>
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter shift title"
-       />
-
+          placeholder="Vuoron nimi"
+        />
         <input
           type="text"
           value={assignedTo}
           onChange={(e) => setAssignedTo(e.target.value)}
-          placeholder="Assigned to"
-       />
-
+          placeholder="Vuoro osoitettu"
+        />
         <input
           type="datetime-local"
           value={start}
           onChange={(e) => setStart(e.target.value)}
-          placeholder="Shift start time"
-       />
-
+          placeholder="Alkamisaika"
+        />
         <input
           type="datetime-local"
           value={end}
           onChange={(e) => setEnd(e.target.value)}
-          placeholder="Shift end time"
-       />
-
-        <button
-          onClick={save}
-        > 
-        Save Shift
-        </button>
+          placeholder="Päättymisaika"
+        />
+        <button onClick={save}>Tallenna vuoro</button>
       </div>
     </div>
   );
 }
 
-export default AddNewShift
+export default AddNewShift;

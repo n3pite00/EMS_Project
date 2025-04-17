@@ -5,7 +5,7 @@ const DeleteEmployee = ({ onClose, onConfirm }) => {
   const [confirmationText, setConfirmationText] = useState("");
 
   const handleConfirm = () => {
-    if (confirmationText.toLowerCase() === "delete") {
+    if (confirmationText.toLowerCase() === "poista") {
       onConfirm();
     }
   };
@@ -14,20 +14,20 @@ const DeleteEmployee = ({ onClose, onConfirm }) => {
     <div className="modal-backdrop">
       <div className="modal-content">
         <button className="modal-close" onClick={onClose}>×</button>
-        <h2>Are you sure you want to delete this employee?</h2>
-        <p>To confirm, type <strong>delete</strong> below:</p>
+        <h2>Haluatko varmasti poistaa tämän työntekijän?</h2>
+        <p>Vahvistaaksesi, kirjoita <strong>poista</strong> alle:</p>
         <input
           type="text"
-          placeholder="Type 'delete'"
+          placeholder="Kirjoita 'poista'"
           value={confirmationText}
           onChange={(e) => setConfirmationText(e.target.value)}
         />
         <button
           className="confirm-button"
           onClick={handleConfirm}
-          disabled={confirmationText.toLowerCase() !== "delete"}
+          disabled={confirmationText.toLowerCase() !== "poista"}
         >
-          Confirm
+          Vahvista
         </button>
       </div>
     </div>

@@ -6,9 +6,10 @@ import AddEmployee from "./Pages/AddEmployee";
 import UpdatePassword from "./Pages/UpdatePassword";
 import TimeTracker from "./Pages/WorkCalendar";
 import Dashboard from "./Pages/Dashboard";
-import SiteSettings from "./Pages/Settings"
+import SiteSettings from "./Pages/Settings";
 import AddNewShift from "./Pages/AddShift";
 import LeaveRequests from "./Pages/LeaveRequests";
+import "./components/Language";
 
 function App() {
   return (
@@ -30,4 +31,3 @@ function App() {
 }
 
 export default App;
-

@@ -16,8 +16,10 @@
         "@fullcalendar/timegrid": "^6.1.17",
         "dotenv": "^16.4.7",
         "firebase": "^11.5.0",
+        "i18next": "^25.0.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
+        "react-i18next": "^15.4.1",
         "react-router-dom": "^7.4.1"
     },
     "devDependencies": {
