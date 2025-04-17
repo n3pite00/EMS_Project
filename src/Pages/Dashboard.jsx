@@ -3,6 +3,8 @@ import Header from "../components/header";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase/Config";
 import "../styles/Dashboard.css";
+import { useTranslation } from 'react-i18next';
+
 
 const Dashboard = () => {
   const [employeeCount, setEmployeeCount] = useState(0);
@@ -11,6 +13,7 @@ const Dashboard = () => {
   const [lastAddedEmployee, setLastAddedEmployee] = useState(null);
   const [mostPopularDepartment, setMostPopularDepartment] = useState("");
   const [departmentCount, setDepartmentCount] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
