@@ -1,8 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth"
+import { auth } from '../firebase/Config'
 import "../styles/header.css";
 
 function Header() {
+
+    const navigate = useNavigate()
+
+    const Logout = () => {
+        signOut(auth).then(() => {
+            navigate("/")
+            }) .catch ((error) => {
+                console.error("Uloskirjautumisessa tapahtui virhe", error)
+            })
+    }
+
     return (
         <nav className="navbar">
             <h2>Tervetuloa Teppo!</h2>
@@ -13,7 +26,7 @@ function Header() {
                 <li><Link to="/leave-requests">Lomapyyntö</Link></li>
                 <li><Link to="/Settings">Asetukset</Link></li>
             </ul>
-            <button>Sign out</button>
+            <button onClick={Logout}>Kirjaudu ulos</button>
         </nav>
     );
 }

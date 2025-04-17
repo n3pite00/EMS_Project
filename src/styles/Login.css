@@ -2,7 +2,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    color: blue;
+    color: #3f55ab;
 }
 
 .Login-page {
@@ -17,6 +17,7 @@ html, body {
 
 .Login-form h1 {
     text-align: center;
+    color: #3B82F6;
 }
 
 .Login-form {
@@ -40,6 +41,6 @@ html, body {
 .Login-form button {
     cursor: pointer;
     color: white;
-    background-color: blue;
+    background-color: #3B82F6;
     
 }
