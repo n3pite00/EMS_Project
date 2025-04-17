@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { db } from "../firebase/Config"; 
+import { db } from "../firebase/Config";
 import { collection, addDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import "../styles/AddEmployee.css";
+import { useTranslation } from "react-i18next";
 
 const AddEmployee = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { t } = useTranslation();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [department, setDepartment] = useState("");
@@ -59,38 +62,38 @@ const AddEmployee = () => {
 
   return (
     <div className="add-employee-container">
-      <h2>{id ? "Edit employee" : "Add new employee"}</h2>
+      <h2>{id ? t("editEmployeeTitle") : t("addEmployeeTitle")}</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="First name"
+          placeholder={t("firstName")}
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           required
         />
         <input
           type="text"
-          placeholder="Last name"
+          placeholder={t("lastName")}
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           required
         />
         <select value={department} onChange={(e) => setDepartment(e.target.value)} required>
-          <option value="">Select department</option>
-          <option value="Human Resource">Human Resource</option>
-          <option value="Operations management">Operations management</option>
-          <option value="Marketing">Marketing</option>
-          <option value="IT department">IT department</option>
+          <option value="">{t("selectDepartment")}</option>
+          <option value="Human Resource">{t("humanResource")}</option>
+          <option value="Operations management">{t("operationsManagement")}</option>
+          <option value="Marketing">{t("marketing")}</option>
+          <option value="IT department">{t("itDepartment")}</option>
         </select>
         <input
           type="number"
-          placeholder="Salary (€)"
+          placeholder={t("salary")}
           value={salary}
           onChange={(e) => setSalary(e.target.value)}
           required
         />
         <button type="submit" className="finish-button">
-          {id ? "Save changes" : "Finish"}
+          {id ? t("saveChanges") : t("finish")}
         </button>
       </form>
     </div>

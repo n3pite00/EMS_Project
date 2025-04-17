@@ -1,28 +1,19 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 
-const resources = {
-  fi: {
-    translation: {
-      siteSettings: "Sivun asetukset",
-      chooseLanguage: "Valitse kieli",
-    },
-  },
-  en: {
-    translation: {
-      siteSettings: "Site Settings",
-      chooseLanguage: "Choose language",
-    },
-  },
-};
+function Language() {
+  const { i18n } = useTranslation();
 
-i18n.use(initReactI18next).init({
-  resources,
-  lng: "fi", 
-  fallbackLng: "fi",
-  interpolation: {
-    escapeValue: false,
-  },
-});
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
-export default i18n;
+  return (
+    <div>
+      <button onClick={() => changeLanguage('fi')}>Suomi</button>
+      <button onClick={() => changeLanguage('en')}>English</button>
+    </div>
+  );
+}
+
+export default Language;

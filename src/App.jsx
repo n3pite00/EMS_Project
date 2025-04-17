@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Login from "./Pages/Login";
 import Employee from "./Pages/Employee";
 import AddEmployee from "./Pages/AddEmployee"; 
@@ -9,7 +10,7 @@ import Dashboard from "./Pages/Dashboard";
 import SiteSettings from "./Pages/Settings";
 import AddNewShift from "./Pages/AddShift";
 import LeaveRequests from "./Pages/LeaveRequests";
-import "./components/Language";
+import "./components/translations/i18n";
 
 function App() {
   return (

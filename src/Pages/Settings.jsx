@@ -1,20 +1,22 @@
 import React from "react";
 import Header from "../components/header";
+import { useTranslation } from "react-i18next";
 import "../styles/Settings.css";
 
 function SiteSettings() {
+  const { t, i18n } = useTranslation();
+
   const changeLanguage = (lng) => {
-    localStorage.setItem("language", lng);
-    window.location.reload();
+    i18n.changeLanguage(lng);
   };
 
   return (
     <div>
       <Header />
       <div className="settings-container">
-        <h2>Sivuston asetukset</h2>
+        <h2>{t("siteSettings")}</h2>
         <div className="language-switch">
-          <p>Valitse kieli</p>
+          <p>{t("chooseLanguage")}</p>
           <button onClick={() => changeLanguage("fi")}>Suomi</button>
           <button onClick={() => changeLanguage("en")}>English</button>
         </div>
