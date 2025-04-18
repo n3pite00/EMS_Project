@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db, SHIFTS_REF } from '../firebase/Config';
-import { useNavigate } from "react-router-dom"
-import "../styles/Login.css"
+import { useNavigate } from "react-router-dom";
+import "../styles/Login.css";
+import { useTranslation } from "react-i18next";
 
 export function AddNewShift() {
-  const [title, setTitle] = useState('')
-  const [assignedTo, setAssignedTo] = useState('')
-  const [start, setStart] = useState('')
-  const [end, setEnd] = useState('')
-  const navigate = useNavigate()
+  const [title, setTitle] = useState('');
+  const [assignedTo, setAssignedTo] = useState('');
+  const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
-  const ShiftCollection = collection(db, SHIFTS_REF)
+  const ShiftCollection = collection(db, SHIFTS_REF);
 
   const save = async () => {
     try {
@@ -20,44 +22,44 @@ export function AddNewShift() {
         assignedTo: assignedTo,
         start: new Date(start),
         end: new Date(end)
-      })
+      });
 
-      alert("Vuoro tallennettu")
-      navigate("/WorkCalendar")
+      alert(t("shiftSaved"));
+      navigate("/WorkCalendar");
     } catch (err) {
-      alert("Virhe vuoron tallennuksessa.")
+      alert(t("shiftSaveError"));
     }
-  }
+  };
 
   return (
     <div className="Login-page">
       <div className="Login-form">
-        <h1>Lisää uusi vuoro</h1>
+        <h1>{t("addNewShift")}</h1>
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Vuoron nimi"
+          placeholder={t("shiftName")}
         />
         <input
           type="text"
           value={assignedTo}
           onChange={(e) => setAssignedTo(e.target.value)}
-          placeholder="Vuoro osoitettu"
+          placeholder={t("assignedTo")}
         />
         <input
           type="datetime-local"
           value={start}
           onChange={(e) => setStart(e.target.value)}
-          placeholder="Alkamisaika"
+          placeholder={t("startTime")}
         />
         <input
           type="datetime-local"
           value={end}
           onChange={(e) => setEnd(e.target.value)}
-          placeholder="Päättymisaika"
+          placeholder={t("endTime")}
         />
-        <button onClick={save}>Tallenna vuoro</button>
+        <button onClick={save}>{t("saveShift")}</button>
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ export function CalendarApp() {
   const ShiftCollection = query(collection(db, SHIFTS_REF)) 
 
   useEffect(() => {
-    const getEventsList = async() => {
+    const getEventsList = async () => {
       try {
         onSnapshot(ShiftCollection, querySnapshot => {
           const ShiftList = querySnapshot.docs.map(doc => {
@@ -34,19 +34,17 @@ export function CalendarApp() {
           setEvents(ShiftList)
         })
       } catch (err) {
-        alert("error")
+        alert(t("Virhe tapahtumien latauksessa"))
+      }
     }
-  }
 
-  
-  getEventsList()
+    getEventsList()
   }, []);
-
 
   return (
     <div className="CalendarView">
         <h1>{t("Työajankirjaus")}</h1>
-        <button onClick={handleAddShift}>Lisää tapahtuma</button>
+        <button onClick={handleAddShift}>{t("Lisää tapahtuma")}</button>
         
         <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin]}
@@ -70,7 +68,6 @@ export function CalendarApp() {
     </div>
   )
 }
-
 
 function renderEventContent(eventInfo) {
   return (

@@ -1,42 +1,52 @@
-import React, { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { sendPasswordResetEmail } from "firebase/auth"
-import { auth } from "../firebase/Config"
-import "../styles/Login.css"
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../firebase/Config";
+import { useTranslation } from "react-i18next";
+import "../styles/Login.css";
 
 function UpdatePassword() {
-  const [email, setEmail] = useState('')
-  const navigate = useNavigate()
-    
+  const [email, setEmail] = useState('');
+  const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+
   const ChangePassword = async () => {
     if (!email) {
-      alert("Syötä sähköpostiosoite.")
-      return
+      alert(t("enterEmail"));
+      return;
     }
 
     try {
-      await sendPasswordResetEmail(auth, email)
-      alert("Salasanan palautuslinkki on lähetetty sähköpostiisi!")
-      navigate("/")
+      await sendPasswordResetEmail(auth, email);
+      alert(t("resetLinkSent"));
+      navigate("/");
     } catch (err) {
-      alert("Virhe salasanan palautuksessa.")
+      alert(t("resetError"));
     }
-  }
+  };
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <div className="Login-page">
       <div className="Login-form">
-        <h1>Palauta salasana</h1>
+        <h1>{t("resetPassword")}</h1>
         <input
           onChange={(e) => setEmail(e.target.value)}
           value={email}
-          placeholder="Syötä sähköpostisi"
+          placeholder={t("enterYourEmail")}
           type="email"
         />
-        <button onClick={ChangePassword}>Lähetä palautuslinkki</button>
+        <button onClick={ChangePassword}>{t("sendResetLink")}</button>
+        <div className="language-switch">
+          <button onClick={() => changeLanguage("fi")}>Suomi</button>
+          <button onClick={() => changeLanguage("en")}>English</button>
+        </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default UpdatePassword;

@@ -5,7 +5,6 @@ import { db } from "../firebase/Config";
 import "../styles/Dashboard.css";
 import { useTranslation } from 'react-i18next';
 
-
 const Dashboard = () => {
   const [employeeCount, setEmployeeCount] = useState(0);
   const [averageSalary, setAverageSalary] = useState(0);
@@ -32,11 +31,11 @@ const Dashboard = () => {
 
       const deptCount = {};
       employees.forEach(emp => {
-        const dept = emp.department || "Tuntematon";
+        const dept = emp.department || t("unknown");
         deptCount[dept] = (deptCount[dept] || 0) + 1;
       });
       const mostPopular = Object.entries(deptCount).sort((a, b) => b[1] - a[1])[0];
-      setMostPopularDepartment(mostPopular?.[0] || "Ei dataa");
+      setMostPopularDepartment(mostPopular?.[0] || t("noData"));
 
       const departments = new Set(employees.map(emp => emp.department));
       setDepartmentCount(departments.size);
@@ -54,34 +53,34 @@ const Dashboard = () => {
 
     fetchData();
     fetchHours();
-  }, []);
+  }, [t]);
 
   return (
     <div className="dashboard-container">
       <Header />
       <div className="dashboard-cards">
         <div className="card">
-          <h3>Työntekijöitä</h3>
+          <h3>{t("employeeCount")}</h3>
           <p>{employeeCount}</p>
         </div>
         <div className="card">
-          <h3>Tänään raportoidut työtunnit</h3>
+          <h3>{t("todayReportedHours")}</h3>
           <p>{todayHours} h</p>
         </div>
         <div className="card">
-          <h3>Keskimääräinen palkka</h3>
+          <h3>{t("averageSalary")}</h3>
           <p>{averageSalary} €</p>
         </div>
         <div className="card">
-          <h3>Osastoja yhteensä</h3>
+          <h3>{t("totalDepartments")}</h3>
           <p>{departmentCount}</p>
         </div>
         <div className="card">
-          <h3>Viimeisin työntekijä</h3>
-          <p>{lastAddedEmployee || "Ei tietoa"}</p>
+          <h3>{t("lastAddedEmployee")}</h3>
+          <p>{lastAddedEmployee || t("noInfo")}</p>
         </div>
         <div className="card">
-          <h3>Suosituin osasto</h3>
+          <h3>{t("mostPopularDepartment")}</h3>
           <p>{mostPopularDepartment}</p>
         </div>
       </div>

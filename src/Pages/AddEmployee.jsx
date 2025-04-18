@@ -56,7 +56,7 @@ const AddEmployee = () => {
 
       navigate("/employees");
     } catch (error) {
-      console.error("Error saving employee:", error);
+      console.error(t("saveEmployeeError"), error);
     }
   };
 
