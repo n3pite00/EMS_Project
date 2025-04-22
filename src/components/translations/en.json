@@ -76,6 +76,9 @@
     "enterEmail": "Please enter your email address.",
     "resetLinkSent": "A password reset link has been sent to your email!",
     "resetError": "Error resetting password.",
-    "loginFailed": "Login failed."
+    "loginFailed": "Login failed.",
+    "adminRole": "Administrator",
+    "guestRole": "Guest",
+    "next": "the following"
   }
   

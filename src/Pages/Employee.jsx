@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/Config";
 import "../styles/Employee.css";
 import Header from "../components/header";
@@ -34,10 +34,28 @@ const Employee = () => {
 
   const handleDeleteConfirm = async () => {
     if (selectedEmployeeId) {
-      await deleteDoc(doc(db, "Employee", selectedEmployeeId));
-      setShowModal(false);
-      setSelectedEmployeeId(null);
-      fetchEmployees();
+      try {
+        const empRef = doc(db, "Employee", selectedEmployeeId);
+        const empSnap = await getDoc(empRef);
+
+        if (empSnap.exists()) {
+          const data = empSnap.data();
+          const email = data.email || "ei määritelty";
+          const uid = data.uid || "ei määritelty";
+
+          console.log(`🔥 Muista poistaa tunnus Firebase Authenticationista:
+  - Email: ${email}
+  - UID: ${uid}`);
+          
+          await deleteDoc(empRef); 
+        }
+
+        setShowModal(false);
+        setSelectedEmployeeId(null);
+        fetchEmployees();
+      } catch (error) {
+        console.error("Poistaminen epäonnistui:", error);
+      }
     }
   };
 

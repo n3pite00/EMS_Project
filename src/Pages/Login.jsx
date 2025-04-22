@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase/Config";
+import { auth, db } from "../firebase/Config";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { useTranslation } from "react-i18next";
 import "../styles/Login.css";
 
@@ -13,14 +14,35 @@ function Login() {
 
   const signIn = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      console.log("Login successful");
-      navigate("/Dashboard");
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+  
+      const q = query(collection(db, "Employee"), where("email", "==", user.email));
+      const querySnapshot = await getDocs(q);
+  
+      let role = "admin"; 
+  
+      if (!querySnapshot.empty) {
+        const employeeData = querySnapshot.docs[0].data();
+        role = employeeData.role || "admin"; 
+      }
+  
+      localStorage.setItem("userRole", role);
+  
+      if (role === "admin") {
+        navigate("/Dashboard");
+      } else if (role === "guest") {
+        navigate("/GuestDashboard");
+      } else {
+        alert("Tuntematon rooli.");
+      }
+  
     } catch (err) {
+      console.error(err);
       alert(t("loginFailed"));
     }
   };
-
+  
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };

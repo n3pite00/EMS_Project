@@ -76,6 +76,9 @@
     "enterEmail": "Syötä sähköpostiosoite.",
     "resetLinkSent": "Palautuslinkki lähetetty sähköpostiisi!",
     "resetError": "Virhe salasanan palautuksessa.",
-    "loginFailed": "Kirjautuminen epäonnistui."
+    "loginFailed": "Kirjautuminen epäonnistui.",
+    "adminRole": "Ylläpitäjä",
+    "guestRole": "Vieras",
+    "next": "seuraavasti"
   }
   

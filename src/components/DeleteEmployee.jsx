@@ -17,7 +17,7 @@ const DeleteEmployee = ({ onClose, onConfirm }) => {
       <div className="modal-content">
         <button className="modal-close" onClick={onClose}>×</button>
         <h2>{t("deleteEmployeeConfirmTitle")}</h2>
-        <p>{t("deleteEmployeeConfirmText")} <strong>{t("delete")}</strong>:</p>
+        <p>{t("deleteEmployeeConfirmText")} {t("next")}:</p>
         <input
           type="text"
           placeholder={t("typeDelete")}

@@ -11,6 +11,7 @@ import SiteSettings from "./Pages/Settings";
 import AddNewShift from "./Pages/AddShift";
 import LeaveRequests from "./Pages/LeaveRequests";
 import "./components/translations/i18n";
+import GuestDashboard from "./Pages/GuestDashboard";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/Settings" element={<SiteSettings />} />
         <Route path="/AddShift" element={<AddNewShift />} />
         <Route path="/leave-requests" element={<LeaveRequests />} />
+        <Route path="/GuestDashboard" element={<GuestDashboard />} />
       </Routes>
     </BrowserRouter>
   );
