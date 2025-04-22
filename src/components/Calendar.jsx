@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import FullCalendar from '@fullcalendar/react'
 import { query, collection, onSnapshot } from "firebase/firestore";
-import { db, SHIFTS_REF } from '../firebase/Config';
+import { db, SHIFTS_REF, auth } from '../firebase/Config';
 import timeGridPlugin from '@fullcalendar/timegrid'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import { useNavigate } from "react-router-dom"
@@ -17,30 +17,40 @@ export function CalendarApp() {
     navigate('/AddShift')
   }
 
-  const ShiftCollection = query(collection(db, SHIFTS_REF)) 
-
   useEffect(() => {
-    const getEventsList = async () => {
-      try {
-        onSnapshot(ShiftCollection, querySnapshot => {
-          const ShiftList = querySnapshot.docs.map(doc => {
-            const data = doc.data()
+    const user = auth.currentUser
+    if (!user) return
+
+   
+    const ShiftCollection = query(collection(db, SHIFTS_REF));
+
+    const getEventsList = onSnapshot(ShiftCollection, querySnapshot => {
+      const userEmail = user.email;
+
+      const ShiftList = querySnapshot.docs
+        .map(doc => {
+          const data = doc.data();
+          if (data.assignedTo === userEmail) {
             return {
+              id: doc.id,
               title: data.title,
               start: data.start.toDate(),
               end: data.end.toDate(),
             }
-          });
-          setEvents(ShiftList)
+          }
+          return null;
         })
-      } catch (err) {
-        alert(t("Virhe tapahtumien latauksessa"))
-      }
-    }
+        .filter(event => event !== null);
 
-    getEventsList()
+      setEvents(ShiftList);
+    }, err => {
+      console.error("Error fetching events:", err);
+      alert(t("Virhe tapahtumien latauksessa"));
+    });
+
+    return () => getEventsList();
   }, []);
-
+    
   return (
     <div className="CalendarView">
         <h1>{t("Työajankirjaus")}</h1>
