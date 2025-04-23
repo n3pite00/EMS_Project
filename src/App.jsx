@@ -3,15 +3,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./Pages/Login";
 import Employee from "./Pages/Employee";
-import AddEmployee from "./Pages/AddEmployee"; 
+import AddEmployee from "./Pages/AddEmployee";
 import UpdatePassword from "./Pages/UpdatePassword";
 import TimeTracker from "./Pages/WorkCalendar";
 import Dashboard from "./Pages/Dashboard";
 import SiteSettings from "./Pages/Settings";
 import AddNewShift from "./Pages/AddShift";
 import LeaveRequests from "./Pages/LeaveRequests";
+
 import "./components/translations/i18n";
-import GuestDashboard from "./Pages/GuestDashboard";
 
 function App() {
   return (
@@ -27,7 +27,6 @@ function App() {
         <Route path="/Settings" element={<SiteSettings />} />
         <Route path="/AddShift" element={<AddNewShift />} />
         <Route path="/leave-requests" element={<LeaveRequests />} />
-        <Route path="/GuestDashboard" element={<GuestDashboard />} />
       </Routes>
     </BrowserRouter>
   );

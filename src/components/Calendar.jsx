@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from 'react'
-import FullCalendar from '@fullcalendar/react'
+import React, { useState, useEffect } from 'react';
+import FullCalendar from '@fullcalendar/react';
 import { query, collection, onSnapshot } from "firebase/firestore";
 import { db, SHIFTS_REF, auth } from '../firebase/Config';
-import timeGridPlugin from '@fullcalendar/timegrid'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import { useNavigate } from "react-router-dom"
-import "../styles/Calendar.css"
+import timeGridPlugin from '@fullcalendar/timegrid';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { useNavigate } from "react-router-dom";
+import "../styles/Calendar.css";
 import { useTranslation } from "react-i18next";
+import useUserRole from '../components/useUserRole';
 
 export function CalendarApp() {
-  const navigate = useNavigate()
-  const [events, setEvents] = useState([])
+  const navigate = useNavigate();
+  const [events, setEvents] = useState([]);
   const { t } = useTranslation();
+  const userRole = useUserRole();
 
   const handleAddShift = () => {
-    navigate('/AddShift')
-  }
+    navigate('/AddShift');
+  };
 
   useEffect(() => {
-    const user = auth.currentUser
-    if (!user) return
+    const user = auth.currentUser;
+    if (!user) return;
 
-   
     const ShiftCollection = query(collection(db, SHIFTS_REF));
 
     const getEventsList = onSnapshot(ShiftCollection, querySnapshot => {
@@ -34,13 +35,13 @@ export function CalendarApp() {
             return {
               id: doc.id,
               title: t(data.title),
-              start: data.start.toDate(),
-              end: data.end.toDate(),
-            }
+              start: data.start?.toDate(),
+              end: data.end?.toDate(),
+            };
           }
           return null;
         })
-        .filter(event => event !== null);
+        .filter(event => event !== null && event.start && event.end);
 
       setEvents(ShiftList);
     }, err => {
@@ -50,35 +51,36 @@ export function CalendarApp() {
 
     return () => getEventsList();
   }, [t]);
-    
+
   return (
     <div className="CalendarView">
-        <h1>{t("Työajankirjaus")}</h1>
+      <h1>{t("Työajankirjaus")}</h1>
+      {userRole !== 'guest' && (
         <button onClick={handleAddShift}>{t("Lisää tapahtuma")}</button>
-        
-        <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin]}
-            headerToolbar={{
-                left: 'prev,next today',
-                center: 'title',
-                right: 'timeGridWeek,timeGridDay'
-              }}
+      )}
 
-            initialView='timeGridWeek'
-            weekends={true}
-            events={events}
-            eventContent={renderEventContent}
-            firstDay={1} 
-            contentHeight="50vh"
-            windowResize={true}
-            scrollTime="07:00:00"
-            eventTimeFormat={{
-                hour: '2-digit', minute: '2-digit'
-            }}
-        />
-        <p>Tämä projekti käyttää <a href="https://fullcalendar.io/">FullCalendar</a> kirjastoa <a href="https://fullcalendar.io/license">MIT Lisenssin</a> mukaan.</p>
+      <FullCalendar
+        plugins={[dayGridPlugin, timeGridPlugin]}
+        headerToolbar={{
+          left: 'prev,next today',
+          center: 'title',
+          right: 'timeGridWeek,timeGridDay'
+        }}
+        initialView='timeGridWeek'
+        weekends={true}
+        events={events}
+        eventContent={renderEventContent}
+        firstDay={1}
+        contentHeight="50vh"
+        windowResize={true}
+        scrollTime="07:00:00"
+        eventTimeFormat={{
+          hour: '2-digit', minute: '2-digit'
+        }}
+      />
+      <p>Tämä projekti käyttää <a href="https://fullcalendar.io/">FullCalendar</a> kirjastoa <a href="https://fullcalendar.io/license">MIT Lisenssin</a> mukaan.</p>
     </div>
-  )
+  );
 }
 
 function renderEventContent(eventInfo) {
@@ -87,7 +89,7 @@ function renderEventContent(eventInfo) {
       <b>{eventInfo.timeText}</b>
       <p>{eventInfo.event.title}</p>
     </>
-  )
+  );
 }
 
-export default CalendarApp
+export default CalendarApp;

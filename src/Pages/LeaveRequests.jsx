@@ -3,6 +3,7 @@ import { collection, getDocs, updateDoc, doc, addDoc } from "firebase/firestore"
 import { db } from "../firebase/Config";
 import "../styles/LeaveRequests.css";
 import { useTranslation } from "react-i18next";
+import useUserRole from '../components/useUserRole';
 
 const LeaveRequestPage = () => {
   const [requests, setRequests] = useState([]);
@@ -16,6 +17,7 @@ const LeaveRequestPage = () => {
   });
 
   const { t } = useTranslation();
+  const userRole = useUserRole();
 
   useEffect(() => {
     const fetchRequests = async () => {
@@ -80,25 +82,27 @@ const LeaveRequestPage = () => {
         <button type="submit">{t("sendRequest")}</button>
       </form>
 
-      <div className="request-list">
-        <h3>{t("receivedRequests")}</h3>
-        {requests.filter(req => req.status === "käsittelemättä").length === 0 ? (
-          <p>{t("noPendingRequests")}</p>
-        ) : (
-          requests
-            .filter(req => req.status === "käsittelemättä")
-            .map((req) => (
-              <div key={req.id} className="request-item">
-                <p>
-                  <strong>{req.firstName} {req.lastName}</strong> {t("requestsLeave")} <strong>{req.startDate} – {req.endDate}</strong> ({req.leaveType})
-                </p>
-                <p>{t("status")}: <strong>{req.status}</strong></p>
-                <button onClick={() => updateRequestStatus(req.id, "hyväksytty")}>{t("approve")}</button>
-                <button onClick={() => updateRequestStatus(req.id, "hylätty")}>{t("reject")}</button>
-              </div>
-            ))
-        )}
-      </div>
+      {userRole !== 'guest' && (
+        <div className="request-list">
+          <h3>{t("receivedRequests")}</h3>
+          {requests.filter(req => req.status === "käsittelemättä").length === 0 ? (
+            <p>{t("noPendingRequests")}</p>
+          ) : (
+            requests
+              .filter(req => req.status === "käsittelemättä")
+              .map((req) => (
+                <div key={req.id} className="request-item">
+                  <p>
+                    <strong>{req.firstName} {req.lastName}</strong> {t("requestsLeave")} <strong>{req.startDate} – {req.endDate}</strong> ({req.leaveType})
+                  </p>
+                  <p>{t("status")}: <strong>{req.status}</strong></p>
+                  <button onClick={() => updateRequestStatus(req.id, "hyväksytty")}>{t("approve")}</button>
+                  <button onClick={() => updateRequestStatus(req.id, "hylätty")}>{t("reject")}</button>
+                </div>
+              ))
+          )}
+        </div>
+      )}
     </div>
   );
 };

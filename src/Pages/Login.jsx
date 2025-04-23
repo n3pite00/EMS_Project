@@ -16,33 +16,37 @@ function Login() {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-  
+
       const q = query(collection(db, "Employee"), where("email", "==", user.email));
       const querySnapshot = await getDocs(q);
-  
-      let role = "admin"; 
-  
+
+      let role = null; 
+
       if (!querySnapshot.empty) {
         const employeeData = querySnapshot.docs[0].data();
-        role = employeeData.role || "admin"; 
+        if (employeeData.role === "guest") {
+          role = "guest";
+        } else if (employeeData.role === "admin") {
+          role = "admin";
+        }
       }
-  
-      localStorage.setItem("userRole", role);
-  
+
+      localStorage.setItem("userRole", role || 'regular'); 
+
       if (role === "admin") {
         navigate("/Dashboard");
       } else if (role === "guest") {
-        navigate("/GuestDashboard");
+        navigate("/Dashboard"); 
       } else {
-        alert("Tuntematon rooli.");
+        navigate("/Dashboard"); 
       }
-  
+
     } catch (err) {
       console.error(err);
       alert(t("loginFailed"));
     }
   };
-  
+
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };

@@ -4,6 +4,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase/Config";
 import "../styles/Dashboard.css";
 import { useTranslation } from 'react-i18next';
+import useUserRole from '../components/useUserRole';
 
 const Dashboard = () => {
   const [employeeCount, setEmployeeCount] = useState(0);
@@ -13,6 +14,7 @@ const Dashboard = () => {
   const [mostPopularDepartment, setMostPopularDepartment] = useState("");
   const [departmentCount, setDepartmentCount] = useState(0);
   const { t } = useTranslation();
+  const userRole = useUserRole();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +59,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <Header />
+      {userRole === 'guest' ? <Header isGuest={true} /> : <Header />}
       <div className="dashboard-cards">
         <div className="card">
           <h3>{t("employeeCount")}</h3>
@@ -67,18 +69,22 @@ const Dashboard = () => {
           <h3>{t("todayReportedHours")}</h3>
           <p>{todayHours} h</p>
         </div>
-        <div className="card">
-          <h3>{t("averageSalary")}</h3>
-          <p>{averageSalary} €</p>
-        </div>
+        {userRole !== 'guest' && (
+          <div className="card">
+            <h3>{t("averageSalary")}</h3>
+            <p>{averageSalary} €</p>
+          </div>
+        )}
         <div className="card">
           <h3>{t("totalDepartments")}</h3>
           <p>{departmentCount}</p>
         </div>
-        <div className="card">
-          <h3>{t("lastAddedEmployee")}</h3>
-          <p>{lastAddedEmployee || t("noInfo")}</p>
-        </div>
+        {userRole !== 'guest' && (
+          <div className="card">
+            <h3>{t("lastAddedEmployee")}</h3>
+            <p>{lastAddedEmployee || t("noInfo")}</p>
+          </div>
+        )}
         <div className="card">
           <h3>{t("mostPopularDepartment")}</h3>
           <p>{mostPopularDepartment}</p>
