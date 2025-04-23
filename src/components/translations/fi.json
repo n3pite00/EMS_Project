@@ -79,6 +79,8 @@
     "loginFailed": "Kirjautuminen epäonnistui.",
     "adminRole": "Ylläpitäjä",
     "guestRole": "Vieras",
-    "next": "seuraavasti"
+    "next": "seuraavasti",
+    "shift": "Työvuoro",
+    "morningshift": "Aamuvuoro"
   }
   

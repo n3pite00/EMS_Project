@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth"
 import { auth } from '../firebase/Config'
@@ -8,6 +8,14 @@ import { useTranslation } from "react-i18next";
 function Header() {
     const navigate = useNavigate()
     const { t } = useTranslation();
+    const [userEmail, setUserEmail] = useState(null)
+
+    useEffect(() => {
+        const currentUser = auth.currentUser
+        if (currentUser) {
+            setUserEmail(currentUser.email)
+        }
+    }, []);
 
     const Logout = () => {
         signOut(auth).then(() => {
@@ -19,7 +27,7 @@ function Header() {
 
     return (
         <nav className="navbar">
-            <h2>{t("welcomeUser", { name: "Teppo" })}</h2>
+            <h2>{userEmail}</h2>
             <ul>
                 <li><Link to="/dashboard">{t("home")}</Link></li>
                 <li><Link to="/WorkCalendar">{t("workCalendar")}</Link></li>

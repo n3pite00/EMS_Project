@@ -33,7 +33,7 @@ export function CalendarApp() {
           if (data.assignedTo === userEmail) {
             return {
               id: doc.id,
-              title: data.title,
+              title: t(data.title),
               start: data.start.toDate(),
               end: data.end.toDate(),
             }
@@ -49,7 +49,7 @@ export function CalendarApp() {
     });
 
     return () => getEventsList();
-  }, []);
+  }, [t]);
     
   return (
     <div className="CalendarView">
@@ -61,20 +61,22 @@ export function CalendarApp() {
             headerToolbar={{
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                right: 'timeGridWeek,timeGridDay'
               }}
 
-            initialView='dayGridWeek'
+            initialView='timeGridWeek'
             weekends={true}
             events={events}
             eventContent={renderEventContent}
             firstDay={1} 
             contentHeight="50vh"
             windowResize={true}
+            scrollTime="07:00:00"
             eventTimeFormat={{
                 hour: '2-digit', minute: '2-digit'
             }}
         />
+        <p>Tämä projekti käyttää <a href="https://fullcalendar.io/">FullCalendar</a> kirjastoa <a href="https://fullcalendar.io/license">MIT Lisenssin</a> mukaan.</p>
     </div>
   )
 }
@@ -83,7 +85,7 @@ function renderEventContent(eventInfo) {
   return (
     <>
       <b>{eventInfo.timeText}</b>
-      <i>{eventInfo.event.title}</i>
+      <p>{eventInfo.event.title}</p>
     </>
   )
 }

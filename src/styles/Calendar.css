@@ -12,6 +12,7 @@ html, body {
 .CalendarView button {
     margin: 10px;
     padding: 10px;
+    margin-left: -20px;
 }
 
 .CalendarView {
@@ -23,9 +24,11 @@ html, body {
     max-width: 1500px; 
     margin: 0 auto; 
     padding: 10px;
+    margin-left: -20px;
 }
 
 .fc {
     width: 1200px;
     margin: 0 auto;
+    margin-left: -60px;
 }
