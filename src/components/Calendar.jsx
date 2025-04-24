@@ -6,18 +6,26 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { useNavigate } from "react-router-dom";
 import "../styles/Calendar.css";
+import fiLocale from '@fullcalendar/core/locales/fi';
+import enLocale from '@fullcalendar/core/locales/en-gb';
 import { useTranslation } from "react-i18next";
 import useUserRole from '../components/useUserRole';
 
 export function CalendarApp() {
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const userRole = useUserRole();
 
   const handleAddShift = () => {
     navigate('/AddShift');
   };
+
+  const localeMap = {
+    fi: fiLocale,
+    en: enLocale
+  };
+
 
   useEffect(() => {
     const user = auth.currentUser;
@@ -31,7 +39,7 @@ export function CalendarApp() {
       const ShiftList = querySnapshot.docs
         .map(doc => {
           const data = doc.data();
-          if (data.assignedTo === userEmail) {
+          if (data.assignedTo === userEmail || data.assignedTo === "all") {
             return {
               id: doc.id,
               title: t(data.title),
@@ -51,6 +59,7 @@ export function CalendarApp() {
 
     return () => getEventsList();
   }, [t]);
+
 
   return (
     <div className="CalendarView">
@@ -77,6 +86,8 @@ export function CalendarApp() {
         eventTimeFormat={{
           hour: '2-digit', minute: '2-digit'
         }}
+        locale={localeMap[i18n.language]} 
+       
       />
       <p>Tämä projekti käyttää <a href="https://fullcalendar.io/">FullCalendar</a> kirjastoa <a href="https://fullcalendar.io/license">MIT Lisenssin</a> mukaan.</p>
     </div>

@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 export function AddNewShift() {
   const [title, setTitle] = useState('');
   const [assignedTo, setAssignedTo] = useState('');
+  const [assignToAll, setAssignToAll] = useState(false);
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
   const navigate = useNavigate();
@@ -17,9 +18,11 @@ export function AddNewShift() {
 
   const save = async () => {
     try {
+      const assignedValue = assignToAll ? "all" : assignedTo;
+
       await addDoc(ShiftCollection, {
         title: title,
-        assignedTo: assignedTo,
+        assignedTo: assignedValue,
         start: new Date(start),
         end: new Date(end)
       });
@@ -41,24 +44,40 @@ export function AddNewShift() {
           onChange={(e) => setTitle(e.target.value)}
           placeholder={t("shiftName")}
         />
+
+        <label>
+          <input
+            type="checkbox"
+            checked={assignToAll}
+            onChange={(e) => setAssignToAll(e.target.checked)}
+          />
+          <span>
+            {t("Everyone")}
+          </span>
+        </label>
+
         <input
           type="text"
           value={assignedTo}
           onChange={(e) => setAssignedTo(e.target.value)}
           placeholder={t("assignedTo")}
+          disabled={assignToAll}
         />
+
         <input
           type="datetime-local"
           value={start}
           onChange={(e) => setStart(e.target.value)}
           placeholder={t("startTime")}
         />
+
         <input
           type="datetime-local"
           value={end}
           onChange={(e) => setEnd(e.target.value)}
           placeholder={t("endTime")}
         />
+
         <button onClick={save}>{t("saveShift")}</button>
       </div>
     </div>

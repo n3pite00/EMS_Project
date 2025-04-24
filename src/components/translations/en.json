@@ -29,6 +29,7 @@
     "addNewShift": "Add New Shift",
     "shiftName": "Shift name",
     "assignedTo": "Assigned to",
+    "Everyone": "Kaikille",
     "startTime": "Start time",
     "endTime": "End time",
     "saveShift": "Save shift",
