@@ -43,11 +43,7 @@ const Employee = () => {
           const email = data.email || "ei määritelty";
           const uid = data.uid || "ei määritelty";
 
-          console.log(`🔥 Muista poistaa tunnus Firebase Authenticationista:
-  - Email: ${email}
-  - UID: ${uid}`);
-          
-          await deleteDoc(empRef); 
+          await deleteDoc(empRef);
         }
 
         setShowModal(false);
@@ -74,6 +70,7 @@ const Employee = () => {
             <th>{t("employee")}</th>
             <th>{t("department")}</th>
             <th>{t("salary")}</th>
+            <th>{t("email")}</th> {/* Uusi sarake */}
             <th>{t("edit")}</th>
             <th>{t("delete")}</th>
           </tr>
@@ -84,6 +81,7 @@ const Employee = () => {
               <td>{emp.firstName} {emp.lastName}</td>
               <td>{emp.department}</td>
               <td>{emp.salary} €</td>
+              <td>{emp.email}</td> {/* Näytetään sähköposti */}
               <td>
                 <button
                   className="edit-button"

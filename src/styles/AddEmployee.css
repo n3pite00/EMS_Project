@@ -2,7 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,6 +35,8 @@ html, body {
 
 .add-employee-container input[type="text"],
 .add-employee-container input[type="number"],
+.add-employee-container input[type="email"], 
+.add-employee-container input[type="password"], 
 .add-employee-container select {
   padding: 10px;
   border-radius: 10px;
