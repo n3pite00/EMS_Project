@@ -17,6 +17,8 @@ export function CalendarApp() {
   const { t, i18n } = useTranslation();
   const userRole = useUserRole();
 
+  console.log("User role:", userRole);
+
   const handleAddShift = () => {
     navigate('/AddShift');
   };
@@ -60,6 +62,10 @@ export function CalendarApp() {
   }, [t]);
 
   const handleEventClick = async(clickInfo) => {
+    if (userRole !== 'admin') {
+      return
+    }
+
     const confirmation = window.confirm(t("Haluatko varmasti poistaa tämän tapahtuman?"))
 
     if (confirmation) {
@@ -76,7 +82,7 @@ export function CalendarApp() {
   return (
     <div className="CalendarView">
       <h1>{t("Työajankirjaus")}</h1>
-      {userRole !== 'guest' && (
+      {userRole == 'admin' && (
         <button onClick={handleAddShift}>{t("Lisää tapahtuma")}</button>
       )}
 
