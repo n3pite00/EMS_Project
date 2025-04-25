@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
-import { query, collection, onSnapshot } from "firebase/firestore";
+import { doc, deleteDoc, query, collection, onSnapshot } from "firebase/firestore";
 import { db, SHIFTS_REF, auth } from '../firebase/Config';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -25,7 +25,6 @@ export function CalendarApp() {
     fi: fiLocale,
     en: enLocale
   };
-
 
   useEffect(() => {
     const user = auth.currentUser;
@@ -60,6 +59,19 @@ export function CalendarApp() {
     return () => getEventsList();
   }, [t]);
 
+  const handleEventClick = async(clickInfo) => {
+    const confirmation = window.confirm(t("Haluatko varmasti poistaa tämän tapahtuman?"))
+
+    if (confirmation) {
+      try {
+        await deleteDoc(doc(db, SHIFTS_REF, clickInfo.event.id))
+        alert(t("Tapahtuma poistettu."))
+      } catch (err) {
+        alert(t("Tapahtuman poistossa tapahtui virhe."))
+      }
+    }
+  }
+
 
   return (
     <div className="CalendarView">
@@ -87,7 +99,7 @@ export function CalendarApp() {
           hour: '2-digit', minute: '2-digit'
         }}
         locale={localeMap[i18n.language]} 
-       
+        eventClick={handleEventClick}
       />
       <p>Tämä projekti käyttää <a href="https://fullcalendar.io/">FullCalendar</a> kirjastoa <a href="https://fullcalendar.io/license">MIT Lisenssin</a> mukaan.</p>
     </div>

@@ -38,12 +38,6 @@ export function AddNewShift() {
     <div className="Login-page">
       <div className="Login-form">
         <h1>{t("addNewShift")}</h1>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder={t("shiftName")}
-        />
 
         <label>
           <input
@@ -55,6 +49,13 @@ export function AddNewShift() {
             {t("Everyone")}
           </span>
         </label>
+
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder={t("shiftName")}
+        />
 
         <input
           type="text"
