@@ -55,6 +55,21 @@ const Employee = () => {
     }
   };
 
+  const translateDepartment = (department) => {
+    switch (department) {
+      case "Human Resource":
+        return t("humanResource");
+      case "Operations management":
+        return t("operationsManagement");
+      case "Marketing":
+        return t("marketing");
+      case "IT department":
+        return t("itDepartment");
+      default:
+        return department; 
+    }
+  };
+
   return (
     <div className="employee-container">
       <Header />
@@ -70,7 +85,7 @@ const Employee = () => {
             <th>{t("employee")}</th>
             <th>{t("department")}</th>
             <th>{t("salary")}</th>
-            <th>{t("email")}</th> {/* Uusi sarake */}
+            <th>{t("email")}</th>
             <th>{t("edit")}</th>
             <th>{t("delete")}</th>
           </tr>
@@ -79,9 +94,9 @@ const Employee = () => {
           {employees.map((emp) => (
             <tr key={emp.id}>
               <td>{emp.firstName} {emp.lastName}</td>
-              <td>{emp.department}</td>
+              <td>{translateDepartment(emp.department)}</td> 
               <td>{emp.salary} €</td>
-              <td>{emp.email}</td> {/* Näytetään sähköposti */}
+              <td>{emp.email}</td>
               <td>
                 <button
                   className="edit-button"
