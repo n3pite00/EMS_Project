@@ -107,7 +107,9 @@ export function CalendarApp() {
         locale={localeMap[i18n.language]} 
         eventClick={handleEventClick}
       />
-      <p>Tämä projekti käyttää <a href="https://fullcalendar.io/">FullCalendar</a> kirjastoa <a href="https://fullcalendar.io/license">MIT Lisenssin</a> mukaan.</p>
+      <p>{t("MIT-License")}</p>
+      <a href="https://fullcalendar.io/">{t("CalendarInfo")}</a>
+      <a href="https://fullcalendar.io/license">{t("MITLink")}</a>
     </div>
   );
 }

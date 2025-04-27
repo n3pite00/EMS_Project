@@ -81,6 +81,25 @@
     "adminRole": "Administrator",
     "guestRole": "Guest",
     "next": "the following",
-    "Terms of Service": "Terms of Service"
+    "Terms of Service": "Terms of Service",
+    "EMSInfo": "This EMS (Employee State Management) site provides information and ways to handle worker information to employer. ",
+    "EMSInfo2": "Service is used by employees to see their work schedule and employers to manage their employees.",
+    "EMSInfo3": "If you have problems with information provided or have concerns, contact your departments manager to edit or delete your information.",
+    "What information site uses?": "What information site uses?",
+    "Workers full name": "Workers full name",
+    "Workers Salary (Seen only by admins)": "Workers Salary (Seen only by admins)",
+    "Email information is provided to you by company.": "Email information is provided to you by company.",
+    "Why is information needed?": "Why is information needed?",
+    "Handling basic employee information": "Handling basic employee information",
+    "Handling work schedule": "Handling work schedule",
+    "Handling employees salary information": "Handling employees salary information",
+    "InfoShown": "Employees full name and work email is shown to everyone under the organisation. Salary information is only seen by admin users. Work schedule is seen only by you, except if the event is filtered to be seen by everyone.",
+    "Information storage and security": "Information storage and security",
+    "InfoShown2": "All information is stored in Google API, firestore where information is handled by Google's secure service. Site uses user roles to filter what can be seen. Only employees with firebase logins, can get to firestore.",
+    "User responsibilities and rights": "User responsibilities and rights",
+    "InfoShown3": "User gives accurate and current information. User can't share organisation information to third parties without permission. ",
+    "MIT-License": "This project uses FullCalendar library under the MIT-License",
+    "MITLink": "MIT-license",
+    "CalendarInfo": "FullCalendar"
   }
   

@@ -1,39 +1,40 @@
 import React from "react";
 import Header from "../components/header";
+import { useTranslation } from "react-i18next";
 import "../styles/Services.css"
 
 function ServiceTerms() {
+    const { t } = useTranslation();
+
         return (
             <>
             <Header />
             <div className="Terms-service">
-                <h1> Terms of Service </h1>
-                <p>This EMS (Employee State Management) site provides information and ways to handle worker information to employer.
-                    Service is used by employees to see their work schedule and employers to manage their employees. If you have problems with information provided or have concerns, 
-                    contact your departments manager to edit or delete your information.
+                <h1>{t("Terms of Service")} </h1>
+                <p>{t("EMSInfo")}
+                {t("EMSInfo2")}
+                {t("EMSInfo3")}
                 </p>
 
-                <h2>What information site uses?</h2>
+                <h2>{t("What information site uses?")}</h2>
                 <ul>
-                    <li> Workers full name</li>
-                    <li> Workers Salary (Seen only by admins)</li>
+                    <li> {t("Workers full name")}</li>
+                    <li> {t("Workers Salary (Seen only by admins)")}</li>
                 </ul>
-                <p>Email information is provided to you by company.</p>
-                <h2>Why is information needed?</h2>
+                <p>{t("Email information is provided to you by company.")}</p>
+                <h2>{t("Why is information needed?")}</h2>
                 <ul>
-                    <li>Handling basic employee information</li>
-                    <li>Handling work schedule</li>
-                    <li>Handling employees salary information</li>
+                    <li>{t("Handling basic employee information")}</li>
+                    <li>{t("Handling work schedule")}</li>
+                    <li>{t("Handling employees salary information")}</li>
                 </ul>
-                <p>Employees full name and work email is shown to everyone under the organisation. Salary information is only seen by admin users. Work schedule is seen only by you,
-                except if the event is filtered to be seen by everyone.</p>
+                <p>{t("InfoShown")}</p>
 
-                <h2>Information storage and security</h2>
-                <p>All information is stored in Google API, firestore where information is handled by Google's secure service. Site uses user roles to filter what can be seen. Only 
-                    employees with firestore logins, can get to firestore.
+                <h2>{t("Information storage and security")}</h2>
+                <p>{t("InfoShown2")}
                 </p>
-                <h2>User responsibilities and rights</h2>
-                <p>User gives accurate and current information. User can't share organisation information to third parties without permission. </p>
+                <h2>{t("User responsibilities and rights")}</h2>
+                <p>{t("InfoShown3")}</p>
                 
             </div>
             </>

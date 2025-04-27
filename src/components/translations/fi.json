@@ -82,6 +82,25 @@
     "next": "seuraavasti",
     "shift": "Työvuoro",
     "morningshift": "Aamuvuoro",
-    "Terms of Service": "Palveluehdot"
+    "Terms of Service": "Palveluehdot",
+    "EMSInfo": "Tämä EMS (Henkilöstöhallintajärjestelmä) -sivusto tarjoaa tietoja ja keinoja työntekijätietojen hallintaa työnantajalta.",
+    "EMSInfo2": "Työntekijät näkevät työaikataulunsa ja työnantajat hallinnoivat työntekijöitään palvelun avulla.",
+    "EMSInfo3": "Jos sinulla on ongelmia annettujen tietojen kanssa tai jos sinulla on huolenaiheita, ota yhteyttä osastosi esimieheen tietojesi muokkaamiseksi tai poistamiseksi.",
+    "What information site uses?": "Mitä tietoja sivusto käsittelee?",
+    "Workers full name": "Työntekijöiden koko nimi",
+    "Workers Salary (Seen only by admins)": "Työntekijöiden palkka (Näkee pelkästään järjestelmänvalvoja)",
+    "Email information is provided to you by company.": "Sähköposti osoitteen tarjoaa työpaikka.",
+    "Why is information needed?": "Miksi tietoja tarvitaan?",
+    "Handling employees salary information": "Työntekijöiden palkkatietojen käsittelyä",
+    "Handling work schedule": "Työaikataulun käsittelyä",
+    "Handling basic employee information": "Työntekijöiden perustietojen käsittelyä",
+    "InfoShown": "Työntekijän koko nimi ja työsähköpostiosoite näytetään kaikille organisaatiossa olevalle. Palkkatiedot näkyvät vain järjestelmänvalvoja oikeuksien omistajille. Työaikataulun näet vain sinä, paitsi jos kalenteri tapahtuma on valittu kaikkien nähtäväksi.",
+    "Information storage and security": "Tietojen varastointi ja turvallisuus",
+    "InfoShown2": "Kaikki tiedot tallennetaan Googlen API:hin, firestoreen, jossa tietoja käsitellään Googlen suojatussa palvelussa. Sivusto käyttää käyttäjärooleja suodattaakseen, mitä voidaan nähdä. Vain työntekijät, joilla on firebase-tunnukset, pääsevät firestoreen.",
+    "User responsibilities and rights": "Käyttäjien vastuudet ja oikeudet",
+    "InfoShown3": "Käyttäjä antaa tarkat ja ajantasaiset tiedot. Käyttäjä ei voi jakaa organisaation tietoja kolmannelle osapuolille ilman lupaa.",
+    "MIT-License": "Tämä projekti käyttää FullCalendar kirjastoa MIT Lisenssin mukaan.",
+    "MITLink": "MIT-lisenssi",
+    "CalendarInfo": "FullCalendar"
   }
   
