@@ -38,6 +38,7 @@ function Header() {
           <li><Link to="/employees">{t("employees")}</Link></li>
         )}
         <li><Link to="/Settings">{t("settings")}</Link></li>
+        <li><Link to="/TermsofService">{t("Terms of Service")}</Link></li>
       </ul>
       <button onClick={Logout}>{t("logout")}</button>
     </nav>

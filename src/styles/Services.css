@@ -1,0 +1,17 @@
+.Terms-service {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 6rem 4rem 2rem;
+    color: rgb(128, 128, 128);
+    
+  }
+  
+  .Terms-service ul {
+    list-style-position: inside; 
+    padding: 0; 
+  }
+  
+  .Terms-service li {
+    margin: 0.5rem 0;
+  }

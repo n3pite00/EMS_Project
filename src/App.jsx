@@ -10,6 +10,7 @@ import Dashboard from "./Pages/Dashboard";
 import SiteSettings from "./Pages/Settings";
 import AddNewShift from "./Pages/AddShift";
 import LeaveRequests from "./Pages/LeaveRequests";
+import ServiceTerms from "./Pages/TermsofService"
 
 import "./components/translations/i18n";
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/Settings" element={<SiteSettings />} />
         <Route path="/AddShift" element={<AddNewShift />} />
         <Route path="/leave-requests" element={<LeaveRequests />} />
+        <Route path="/TermsofService" element={<ServiceTerms />} />
       </Routes>
     </BrowserRouter>
   );
