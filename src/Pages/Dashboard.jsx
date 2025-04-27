@@ -16,6 +16,21 @@ const Dashboard = () => {
   const { t } = useTranslation();
   const userRole = useUserRole();
 
+  const translateDepartmentName = (departmentName) => {
+    switch (departmentName) {
+      case "Human Resource":
+        return t("humanResource");
+      case "Operations management":
+        return t("operationsManagement");
+      case "Marketing":
+        return t("marketing");
+      case "IT department":
+        return t("itDepartment");
+      default:
+        return departmentName;
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const employeeSnapshot = await getDocs(collection(db, "Employee"));
@@ -37,7 +52,7 @@ const Dashboard = () => {
         deptCount[dept] = (deptCount[dept] || 0) + 1;
       });
       const mostPopular = Object.entries(deptCount).sort((a, b) => b[1] - a[1])[0];
-      setMostPopularDepartment(mostPopular?.[0] || t("noData"));
+      setMostPopularDepartment(mostPopular ? translateDepartmentName(mostPopular[0]) : t("noData")); // Use the translation function here
 
       const departments = new Set(employees.map(emp => emp.department));
       setDepartmentCount(departments.size);
