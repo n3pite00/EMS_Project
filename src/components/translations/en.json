@@ -100,6 +100,7 @@
     "InfoShown3": "User gives accurate and current information. User can't share organisation information to third parties without permission. ",
     "MIT-License": "This project uses FullCalendar library under the MIT-License",
     "MITLink": "MIT-license",
-    "CalendarInfo": "FullCalendar"
+    "CalendarInfo": "FullCalendar",
+    "employeesaved": "Employee saved"
   }
   
