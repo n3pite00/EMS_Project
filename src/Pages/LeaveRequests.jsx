@@ -4,7 +4,7 @@ import { db } from "../firebase/Config";
 import "../styles/LeaveRequests.css";
 import { useTranslation } from "react-i18next";
 import useUserRole from '../components/useUserRole';
-
+import Header from "../components/header"; 
 const LeaveRequestPage = () => {
   const [requests, setRequests] = useState([]);
   const [formData, setFormData] = useState({
@@ -65,6 +65,7 @@ const LeaveRequestPage = () => {
 
   return (
     <div className="leave-request-container">
+      <Header />
       <h2>{t("leaveRequestsTitle")}</h2>
 
       <form className="leave-form" onSubmit={handleSubmit}>
