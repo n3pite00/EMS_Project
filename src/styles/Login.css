@@ -57,3 +57,9 @@ html, body {
     position: relative;
     right: 110px;
 }
+
+.language-switch button {
+    margin-right: 5px;
+    margin-top: 15px;
+    
+}
