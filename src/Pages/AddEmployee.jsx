@@ -61,7 +61,7 @@ const AddEmployee = () => {
           lastName,
           department,
           salary,
-          email,
+          email: email.toLowerCase(),
           role,
         });
       } else {
@@ -71,7 +71,7 @@ const AddEmployee = () => {
           lastName,
           department,
           salary,
-          email,
+          email: email.toLowerCase(),
           role,
         });
       }

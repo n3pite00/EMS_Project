@@ -14,10 +14,11 @@ function Login() {
 
   const signIn = async () => {
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const lowerEmail = email.toLowerCase();
+      const userCredential = await signInWithEmailAndPassword(auth, lowerEmail, password);
       const user = userCredential.user;
 
-      const q = query(collection(db, "Employee"), where("email", "==", user.email));
+      const q = query(collection(db, "Employee"), where("email", "==", user.email.toLowerCase()));
       const querySnapshot = await getDocs(q);
 
       let role = null; 
