@@ -19,3 +19,5 @@ This project uses FullCalendar library under the MIT License.<br>
 
 Project uses translation library<br>
 [i18next](https://www.i18next.com/)
+
+Project uses firebase
