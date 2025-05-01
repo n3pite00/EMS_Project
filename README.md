@@ -11,7 +11,11 @@ Currently, two official plugins are available:
 
 If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
+## Tools project uses
 
-This project uses FullCalendar library under the MIT License.
+This project uses FullCalendar library under the MIT License.<br>
 [MIT License](https://fullcalendar.io/license)
 [FullCalendar](https://fullcalendar.io/)
+
+Project uses translation library<br>
+[i18next](https://www.i18next.com/)
